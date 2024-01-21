@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 import com.akj.namecard.ui.theme.NameCardTheme
 
 
@@ -103,34 +104,27 @@ fun NameDialog(userData: MyViewModel, onDismiss: () -> Unit){
     var name by remember {
         mutableStateOf("")
     }
-    var showDialog by remember { mutableStateOf(true) }
 
-    if(showDialog){
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                onDismiss() },
-            confirmButton = { TextButton(onClick = {
-                userData.setName(name)
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "확인")
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss() },
+        confirmButton = { TextButton(onClick = {
+            userData.setName(name)
+            onDismiss()
+        }) {
+            Text(text = "확인")
 
-            } },
-            modifier = Modifier,
-            dismissButton = { TextButton(onClick = {
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "취소")
-            } },
-            title = { Text("이름 변경") },
-            text = { OutlinedTextField(value =  name, onValueChange = {name = it})},
-            backgroundColor = Color.White
-        )
-
-    }
+        } },
+        modifier = Modifier,
+        dismissButton = { TextButton(onClick = {
+            onDismiss()
+        }) {
+            Text(text = "취소")
+        } },
+        title = { Text("이름 변경") },
+        text = { OutlinedTextField(value =  name, onValueChange = {name = it})},
+        backgroundColor = Color.White
+    )
 }
 
 
@@ -141,34 +135,27 @@ fun AgeDialog(userData: MyViewModel, onDismiss: () -> Unit){
 
     }
 
-    var showDialog by remember { mutableStateOf(true) }
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss() },
+        confirmButton = { TextButton(onClick = {
+            userData.setAge(if(age.toInt() >= 0) age.toInt() else 0 )
+            onDismiss()
+        }) {
+            Text(text = "확인")
 
-    if(showDialog){
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                onDismiss() },
-            confirmButton = { TextButton(onClick = {
-                userData.setAge(age.toInt())
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "확인")
+        } },
+        modifier = Modifier,
+        dismissButton = { TextButton(onClick = {
+            onDismiss()
+        }) {
+            Text(text = "취소")
+        } },
+        title = { Text("나이 변경") },
+        text = { OutlinedTextField(value = age, onValueChange = {age = it}) },
+        backgroundColor = Color.White
+    )
 
-            } },
-            modifier = Modifier,
-            dismissButton = { TextButton(onClick = {
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "취소")
-            } },
-            title = { Text("이름 변경") },
-            text = { OutlinedTextField(value = age, onValueChange = {age = it}) },
-            backgroundColor = Color.White
-        )
-
-    }
 }
 
 @Composable
@@ -176,34 +163,26 @@ fun BirthDialog(userData: MyViewModel, onDismiss: () -> Unit){
     var birth by remember {
         mutableStateOf("")
     }
-    var showDialog by remember { mutableStateOf(true) }
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss() },
+        confirmButton = { TextButton(onClick = {
+            userData.setBirth(birth)
+            onDismiss()
+        }) {
+            Text(text = "확인")
 
-    if(showDialog){
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                onDismiss() },
-            confirmButton = { TextButton(onClick = {
-                userData.setBirth(birth)
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "확인")
-
-            } },
-            modifier = Modifier,
-            dismissButton = { TextButton(onClick = {
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "취소")
-            } },
-            title = { Text("이름 변경") },
-            text = { OutlinedTextField(value =  birth, onValueChange = {birth = it})},
-            backgroundColor = Color.White
-        )
-
-    }
+        } },
+        modifier = Modifier,
+        dismissButton = { TextButton(onClick = {
+            onDismiss()
+        }) {
+            Text(text = "취소")
+        } },
+        title = { Text("생년월일 변경") },
+        text = { OutlinedTextField(value =  birth, onValueChange = {birth = it})},
+        backgroundColor = Color.White
+    )
 }
 
 @Composable
@@ -211,33 +190,26 @@ fun EmailDialog(userData: MyViewModel, onDismiss: () -> Unit){
     var email by remember {
         mutableStateOf("")
     }
-    var showDialog by remember { mutableStateOf(true) }
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss() },
+        confirmButton = { TextButton(onClick = {
+            userData.setEmail(email)
+            onDismiss()
+        }) {
+            Text(text = "확인")
 
-    if(showDialog){
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                onDismiss() },
-            confirmButton = { TextButton(onClick = {
-                userData.setEmail(email)
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "확인")
-
-            } },
-            modifier = Modifier,
-            dismissButton = { TextButton(onClick = {
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "취소")
-            } },
-            title = { Text("이름 변경") },
-            text = { OutlinedTextField(value =  email, onValueChange = {email = it})},
-            backgroundColor = Color.White
-        )
-    }
+        } },
+        modifier = Modifier,
+        dismissButton = { TextButton(onClick = {
+            onDismiss()
+        }) {
+            Text(text = "취소")
+        } },
+        title = { Text("이름 변경") },
+        text = { OutlinedTextField(value =  email, onValueChange = {email = it})},
+        backgroundColor = Color.White
+    )
 }
 
 @Composable
@@ -245,34 +217,26 @@ fun InformDialog(userData: MyViewModel, onDismiss: () -> Unit){
     var inform by remember {
         mutableStateOf("")
     }
-    var showDialog by remember { mutableStateOf(true) }
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss() },
+        confirmButton = { TextButton(onClick = {
+            userData.setInform(inform)
+            onDismiss()
+        }) {
+            Text(text = "확인")
 
-    if(showDialog){
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                onDismiss() },
-            confirmButton = { TextButton(onClick = {
-                userData.setInform(inform)
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "확인")
-
-            } },
-            modifier = Modifier,
-            dismissButton = { TextButton(onClick = {
-                showDialog = false
-                onDismiss()
-            }) {
-                Text(text = "취소")
-            } },
-            title = { Text("이름 변경") },
-            text = { OutlinedTextField(value =  inform, onValueChange = {inform = it})},
-            backgroundColor = Color.White
-        )
-
-    }
+        } },
+        modifier = Modifier,
+        dismissButton = { TextButton(onClick = {
+            onDismiss()
+        }) {
+            Text(text = "취소")
+        } },
+        title = { Text("이름 변경") },
+        text = { OutlinedTextField(value =  inform, onValueChange = {inform = it})},
+        backgroundColor = Color.White
+    )
 }
 
 

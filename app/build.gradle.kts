@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.akj.namecard"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.akj.namecard"
         minSdk = 25
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material:material")
+    implementation("androidx.compose.material3:material3")
 
 
     testImplementation("junit:junit:4.13.2")
